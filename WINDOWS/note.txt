@@ -1,0 +1,43 @@
+Les nouveaux modifications se basent sur les commentaire données lors de la présentation du projet:
+
+-Révison du code
+-Ajout d'une fonctionnalité de calcul de temps de rotation Pour chaque processus
+ +{
+ 	 -Pour Tourniquet (dont le quantum a été saisie au préalable)
+ 	 -Pour FIFO.
+  }
+-Correction des bugs sur l'algorithme d'affichage du schéma temporel
+-Correction du matrice d'affichage en résumé des processus saisies
+-Ajout de la sortie textuelle de l'ordonnancement
+-Modification de la fonction d'ordonnancement pour envoyer un tableau de temps de rotation(de type long*)
+  +{
+  		-La fonction si on a choisit de faire tourniquet la fonction va directement demander de saisir le quantum
+  		-Retour d'une variable de type non void (variable de type long*)
+  }
+-Afficher le temps de rotation de fifo et tourniquet
+  +{
+   		Pour cela à la fin de la saisie on calcul directement le temps de rotation pour FIFO
+   		et à l'affichage on met NA pour tourniquet pour dire que le temps de rotation pour tourniquet
+   		n'a pas été calculé encore.
+   		  Après on demande à l'utilisateur s'il veut calculer le temps de rotation pour tourniquet.
+   		S'il met oui, on lui demande le quantum et on reaffiche le tableau avec les nouveaux données.
+   		+{
+   			Le fait de calculer un temps de rotation implique de lancer l'algorithme d'ordonnancement
+   			pour FIFO et TOURNIQUET. Deux tableaux de type long* prendront le résultat de l'algorithme
+   			d'ordonnancement. L'un prendra le résultat pour FIFO et l'autre le résultat pour tourniquet(Deux appels).
+   		}
+  }L'ensemble de se travail sera faite sur la fonction concernée.
+
+
+POUR CELA ON AJOUTE LES FONCTIONS SUIVANTES :
+
+/**
+*Temps de rotation : durée moyenne qu’il faut pour qu’un processus *s’exécute. Le temps
+*de rotation d’un processus comprend tout le temps que celui-ci passe *dans le système. Il
+*est inversement proportionnel au débit.
+*/
+
+-long* _RotateTime(BCP p, long rotate[], int indice, long addTime);
+  //Maintenant il reste à récuperer le resultat de la fonction _RotateTime sur la fonction main()
+  //Pour l'utiliser sur les fonction d'affichage et (Afin d'afficher le temps de rotation)
+  //Et creer une fonction qui va libérer la zonne mémoire alloué
