@@ -1,0 +1,64 @@
+body{	background-color: #233; }
+main
+{	
+	-webkit-filter: contrast(109%);
+	-moz-filter: contrast(109%);
+	-o-filter: contrast(109%);
+	-ms-filter: contrast(109%);
+	filter: contrast(109%);
+
+	-webkit-filter: brightness(0.9);
+
+}
+table th#mid
+{
+	border-left: none;
+	background-color: none;
+	border-bottom: 1px solid #000;
+	border-right:  1px solid #000;
+}
+table tr:nth-child(odd){background: #dd8;}
+table tr:nth-child(even){background: #99c;}
+
+
+table
+{
+	-webkit-filter: brightness(0.95);
+	-moz-filter: brightness(0.95);
+	-o-filter: brightness(0.95);
+	-ms-filter: brightness(0.95);
+}
+
+h1{	background-color :#fA7931; }
+h2{ background-color: #40ff7f; }
+h3{ background-color :#0EaEc5; }
+div.bloc-h2
+{
+	color:#000000;
+	border:2px double #60bf8f;
+	background-color: #b0ff8f;
+}
+
+div.bloc-h2:hover
+{
+	background-color: #ddd;
+	border-left-color: #001;
+}
+
+.red{color: #b12;}
+#test
+{
+	color: #0c0;
+	background-color: #00a;
+}
+
+footer{	background-color: #9B7204; }
+figure 
+{
+	/*background-color: hsla(50,0%,10%,0.5);*/
+	-webkit-filter: brightness(80%);
+	-moz-filter: brightness(80%);
+	-o-filter: brightness(80%);
+	-ms-filter: brightness(80%);
+}
+

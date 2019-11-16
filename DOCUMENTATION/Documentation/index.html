@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Acceuil</title>
+		<meta charset="utf-8">
+	<!--	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 500px)" href="style/menu-mobile-phone.css">
+		<link rel="stylesheet" type="text/css" media="not screen and (max-device-width: 500px)" href="style/menu.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link rel="stylesheet" type="text/css" href="style/dark-style.css">
+		<meta name="author" content="Documentation">
+	</head>
+	<body>
+
+		<header id="main-header">
+			<nav id="main-nav">
+				<p>
+					<a href="#"  onclick="jascript:f()">Acceuil
+						<img src="img/menu.png" height="50" id="img1">
+						<img src="img/home.png" height="50" > 
+					</a>
+				</p>
+				<ul id="main-menu">
+					<li style="clear:both;"><a href="docm.html"><img src="img/doc.png" height="50" > Documentation</a></li>
+					<li style="clear:both;"><a href="#"><img src="img/ord.png" height="50" > Ordonnancement</a></li>
+					<li style="clear:both;"><a href="#" id="telec"><img src="img/downl.png" height="50" >Téléchargement</a></li>
+				</ul>
+			</nav>
+		</header>
+		<script type="text/javascript" src="scripts/menu-click.js"></script>
+
+		<main>
+
+			<h1>Documentation du Projet Système II</h1>
+			<!--Bloc de l'introduction-->
+			<h2 class="main-h2 intro">Introduction</h2>
+			<div class="bloc-h2">
+				<p><span class="nouv-par"> </span> L'ordonnancement des processus est l'un des travaux importants effectués par le Microprocesseur par le biais d'un système d'exploitation. Ce dernier, afin de bien ordonner les processus, il utilise des critères dites <span class="gras">Critères d'ordonnancements</span>. Ces critères vont constituer donc les algorithmes d'ordonnancement que le système d'exploitation va s'en servir afin que le système exécute les processus dans un ordre choisis.</p>
+			</div>
+			<!--Fin Bloc de l'introduction-->
+
+			<!--Début du bloc numéro 1-->
+			<h2 class="main-h2 fonct">Fonctionnalités</h2>
+			<div class="bloc-h2">
+				<p><span class="nouv-par"> </span> La fonctionnalité première de ce programme est l'ordonnancement des processus dont à la fin de l'ordonnancement le programme donnera une sortie du résultat de l'ordonnancement.</p>
+				<p>Les fonctionnalité actuelles du projets sont :</p>
+				<table id="liste">
+					<tr><td>La saisie des informations de chaque processus (<span class="italic">Lecture à partir du clavier</span>).</td></tr>
+					<tr><td>La lecture des processus à partir d'un fichier qui doit obligatoirement respecter une structure prédéfinie sur le programme.</td></tr>
+					<tr><td>Sauvegarde de tous les processus lus par le programme dans un fichier texte.</td></tr>
+					<tr><td>Suppression d'un ou plusieurs processus (<span class="italic">Suppression en tête de la liste des processus</span>).</td></tr>
+					<tr><td>Affichage d'un schéma Temporel des processus lu par le programme.</td></tr>
+					<tr><td>Affichage des principaux données des processus lu par le programme + le temps de rotation de chacun suivant  l'algorithme <strong>FIFO</strong> et <strong>TOURNIQUET</strong>.	Pour le TOURNIQUET un quantum sera saisie par l'utilisateur avant d'afficher le temps de rotation.
+					</td></tr>
+					<tr><td>
+						Algorithme d'ordonnancement des processus :<br> 
+						Deux types d'ordonnancement ont été implémenté (<span class="italic"> voir le tableau suivantes</span>).
+
+						<table id="interne">
+							<tr>
+								<th  id="mid"></th>
+								<th>Liste d'attente des Processus prêts</th>
+								<th>Liste d'attente des Processus Bloqués</th>
+							</tr>
+							<tr>
+								<td>Type 1</td>
+								<td>TOURNIQUET</td>
+								<td>FIFO</td>
+							</tr>	
+							<tr>
+								<td>Type 2</td>
+								<td>FIFO</td>
+								<td>FIFO</td>
+							</tr>							
+						</table>
+
+						<br>
+						<span class="important nouv-par"> <span class="red">Remarque</span> : Pour le tourniquet un quantum sera saisie par l'utilisateur.</span><br><br>
+					</td></tr>
+					<tr><td>Une meilleure gestion de la mémoire allouée dynamiquement.</td></tr>
+					<tr><td>Des animations qui accompagnent l'éxecution du programme</td></tr>
+					<tr><td>Des Menu dynamisés</td></tr>
+				</table>
+				<p>
+					<span class="nouv-par"></span>Prochainement il y aura l'ajout des autres algorithmes d'ordonnancement à savoir le <strong>SRT, SJF,...</strong>, Ordonnancement avec une priorité statique ainsi que priorité dynamique...
+				</p>
+			</div>
+			<!--Fin du bloc numéro 1-->
+
+			<!--Début du bloc numéro 2-->
+			<h2 class="main-h2 algo">Algorithmes d'ordonnancement</h2>
+			<div class="bloc-h2">	
+				<h3 class="main-h3" id="etat" >A - Etat d'un processus</h3>
+				<!--Insertion d'une image-->
+					<figure>
+					<img src="img/etat.png" title="autre représentation" height="150">
+					<figcaption>Etat d'un processus<br>
+						Source : <a class="src" href="http://www.courstechinfo.be/OS/Processus.html">http://www.courstechinfo.be/OS/Processus.html</a> </figcaption>
+					</figure>
+				<!--Fin de l'insertion d'une image-->
+					<p><span class="nouv-par"> </span>  L'ordonnancement des processus est l'un des éléments clé qu'un système d'exploitation doit pouvoir faire. Le système d'exploitation va mettre les processus dans une liste d'attente et sélectionner le(s) processus qui seront <span>élu(s)</span> et ceux devront éffectuer les Entrées/Sortie (ES).</p>
+					<p>Au fait, un processus peut avoir jusqu'à quatre etats possibles lorsqu'il est charger dans la mémoire RAM.</p>
+					<ol type="a">
+						<li>Elu
+							<!--Insertion d'une image-->
+							<figure id="critere">
+								<img src="img/diagramme-etat.png" title="Différentes etat d'un processus" height="300">
+								<figcaption>États que peut prendre un processus sous la forme d'un diagramme états-transitions où les flèches sont les transitions autorisées.<br>
+								Source : <a class="src" href="https://commons.wikimedia.org/wiki/File:Diagramme_etat_processus_simple.svg">Wikipedia</a> </figcaption>
+							</figure>
+							<!--Fin de l'insertion d'une image-->
+					
+							<ul><li>Un processus est élu lorsqu'il est chargé dans le microprocesseur, on dit qu'il est en exécution.</li></ul>
+						</li>
+						<li>Prêt
+							<ul><li>On dit qu'un processus est élu lorsqu'il attend qu'un processus élu soit décharger de la RAM pour être élu.</li></ul>
+						</li>
+						<li>Effectue les E/S
+							<ul>
+								<li>Un processus éffectue les E/S lorsqu'il utilise une autre périphérique autre que le processeur tel que :<br>
+									<li>Le clavier</li>
+									<li>L'écran</li>
+									<li>Une imprimante</li>
+									<li>Un clé usb</li>
+									<li>Un stockage de masse</li>
+									<li>...</li>
+								</li>
+							</ul>
+						</li>
+						<li>Bloqué
+							<ul><li>Un processus est bloqué lorsqu'il est en attente d'un périphérique d'ES</li></ul>
+						</li>
+					</ol>
+					<p>Un processus est à l'etat terminé lorsqu'il n'est pas dans les quatres etat définis ci-haut</p>
+
+					
+					<h3 class="main-h3" id="ordo">B - L'ordonnancement des processus</h3>
+					<p><span class="nouv-par"> </span> Les processus concurrents doivent se partager le processeur, la mémoire et les entrées/sorties.</p>
+					<ul type="circle">
+						<li> Dans les systèmes anciens, les systèmes de traitement par lots mais aussi les systèmes d'exploitation pas vraiment multitâches tels que Windows 9x, l'ordonnancement était de type coopératif. L'ordonnanceur n'intervenait que lorsque le processus en cours se terminait ou se bloquait. Ce système assez sommaire convenait aux traitements par lots quand le temps de réponse n'avait que peu d'importance.</li>
+						<li> Actuellement, sur les systèmes interactifs multitâches, parfois même multi utilisateurs et multi processeurs, l'ordonnancement doit être préemptif. L'ordonnanceur ne peut laisser un processus monopoliser les ressources du système et réquisitionne régulièrement le processeur pour en répartir la disponibilité entre les processus qui simultanément sont prêts à être exécutés. La politique suivie pour déterminer la manière d'ordonnancer les processus est fonction de nombreux critères parfois contradictoires. Le fait de favoriser certaines catégories de tâches peut en léser d'autres. </li>
+					</ul>
+
+					<p>On distingue cinq algorithme :</p>
+					<ol>
+						<li><span class="gras">FCFS</span>  -  Fist-come First-served (<span class="gras">FIFO</span>)  =   Premier arrivé / Premier servi </li>
+						<li><span class="gras">SJF</span>  -  Shorted Job First   =   le job le plus court d'abord </li>
+						<li><span class="gras">SRT</span> -  Shorted Remaining Time   =   l'algorithme du temps restant le plus court </li>
+						<li><span class="gras">RR</span>  -  Round Robin   =   L'algorithme du tourniquet</li>
+						<li><span class="gras">L'ordonnancement avec priorité</span></li>
+					</ol>
+
+					<p>Dans ce projet les algorithmes utilisés est une combinaison du <span class="gras">FIFO</span> avec <span class="gras">TOURNIQUET</span>.</p>
+				</div>
+				<!--Fin du bloc numéro 2-->
+
+
+
+				<!--Début du bloc numéro 3-->
+				<h2 class="main-h2" id="codes">Code source du projet</h2>
+				<div class="bloc-h2">
+					<p>Le projet est écris en langage <span class="gras">C</span>.
+						<br>Vu que le code du projet allait être long, le fichier qui allait contenir le projet est subdivisé en plusieurs sous-fichiers rélié entre eux <span class="italic">(Programmation modulaire)</span>.
+					</p>
+
+					<h3 class="main-h3" id="tree">Hierarchie du code source</h3>
+
+					<p>Soit <q>Gestion_de_processus</q> le repertoire principal contenant l'nsemble du projet</p>
+					
+					<ul>Gestion_de_processus/
+						<ul>
+							<li>Effects/
+								<ul>
+									<li>effects.c</li>
+									<li>effects.h</li>
+								</ul>
+							</li>
+							<li>ord/
+								<ul>
+									<li>ordonne.c</li>
+									<li>ordonne.h</li>
+								</ul>
+							</li>
+							<li>Work/
+								<ul>
+									<li>fonct.c</li>
+									<li>fonct.h</li>
+								</ul>
+							</li>
+							<li>main.c</li>
+						</ul>
+					</ul>
+
+					<p>Au cours de l'éxecution du programme un autre repertoire sera créer automatiquement et se repertoire contiendra une sauvegarde des processus lus pas le programme.</p>
+					<p>Les fichiers qui seront contenu dans ce repertoire seront de la forme <q class="italic gras">saveX.txt</q> avec <q>X</q> un nombre qui commence à 1. Le premier fichier de sauvegarde sera juste nommé <q class="italic gras">save.txt</q><br>
+					En voici un exemple
+					</p>
+					<ul>_Sauvegarde/
+						<ul>
+							<li>save.txt</li>
+							<li>save1.txt</li>
+							<li>save2.txt</li>
+							<li>save3.txt</li>
+							<li>...</li>
+							<li>saveN.txt</li>
+						</ul>
+					</ul>
+
+					<br>
+					<p>Si le programme a été &eacute;xecuté plus d'une fois nous aurons alors l'hierarcie suivante : </p>
+
+					<ul>Gestion_de_processus/
+						<ul>
+							<li>_Sauvegarde/
+								<figure>
+								<img src="img/fig1.png" title="figure du repertoire : Gestion_de_processus" height="120" width="550">
+								<figcaption>Répertoire contenant l'ensemble du projet</figcaption>
+							</figure>
+								<ul>
+									<li>save.txt</li>
+									<li>save1.txt</li>
+									<li>save2.txt</li>
+									<li>save3.txt</li>
+									<li>...</li>
+									<li>saveN.txt</li>
+								</ul>
+							</li>
+							<li>Effects/
+
+								<ul>
+									<li>effects.c</li>
+									<li>effects.h</li>
+								</ul>
+							</li>
+							<li>ord/
+								<ul>
+									<li>ordonne.c</li>
+									<li>ordonne.h</li>
+								</ul>
+							</li>
+							<li>Work/
+								<ul>
+									<li>fonct.c</li>
+									<li>fonct.h</li>
+								</ul>
+							</li>
+							<li>main.c</li>
+						</ul>
+					</ul>
+				</div>
+				<!--Fin du bloc numéro 3-->
+
+
+		</main>
+
+		<footer>
+
+			<div id="Grand_Bloc">
+				<!--Premier colonne-->
+				<div class="blc1">
+					<p>
+						<a href="https://www.facebook.com/mohamed.faouzi.334" _blank id="facebook"">
+							<p  id="logo_fcbk">
+								<img src="img/facebook_logo.png" height="50" title="logo_Facebook" alt="facebook_logo.png">
+							</p>
+							<p>Faouzi Mohamed</p>
+							
+						</a>
+					</p>
+					<p id="email">
+						Email : <a href="mailto:faouzimohamedf@gmail.com">faouzimohamedf@gmail.com</a>
+					</p>
+					<p>Tel   : 0638463344</p>
+				</div>
+				<!--Fin du Premier colonne-->
+
+				<!--Deuxième colonne-->
+				<div class="blc2">
+					<p id="p1">Gestion de processus</p>
+					<p>Projet Système d'exploitation II - SMI - S4</p>
+					<p>
+						<a href="http://fs.uit.ac.ma/"> Faculté des sciences</a> 
+						- 
+						<a href="http://www.uit.ac.ma/fr/">  UNIVERSITÉ IBN TOFAIL</a>
+					</p>
+				</div>
+				<!--Fin du deuxième colonne-->
+			</div>
+			<!--Fin du grand bloc-->
+
+		</footer>
+	</body>
+</html>

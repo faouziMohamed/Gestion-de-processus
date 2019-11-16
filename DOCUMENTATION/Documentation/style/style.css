@@ -1,0 +1,331 @@
+/*****************Style généraux*****************/
+body
+{
+	background-color:#EAEAEA;
+	border-radius: 0px 0px 10px 10px;
+}
+
+
+main
+{
+	padding:1%;
+	width :  88%;
+	margin: auto;
+	overflow: visible;
+	font-family: Georgia, serif;
+	text-align: justify;
+}
+
+    p{font-size: 120%;}
+ul,ol{font-size: 120%;}
+figure a:before { content: "→"; }
+a{
+	text-decoration: none;
+	color: black;
+}
+
+a:hover
+{
+	text-decoration: underline;
+	color: yellow;
+}
+
+figure#critere{	width: 366px;}
+
+figure
+{
+	float: right;
+	padding: 2%;
+	border-radius: 7px;
+}
+
+figure img{	cursor: zoom-in;}
+
+a>img
+{
+	float: left;
+	margin-top: -5px;
+}
+figure a:hover
+{
+	text-decoration: underline;
+	color : #0082AE;
+}
+
+img{border-radius: 9px;}
+
+figcaption
+{
+	background-color: #BCEBFB;
+	text-align: center;
+	padding: 1%;
+	border-radius: 9px;
+}
+
+.src{color: green;}
+/******LES TITRES H1 *********/
+h1
+{
+	font-family: "Lucida Console", Monaco, monospace,serif;
+	margin-top: 100px;
+	text-align: center;
+	background-color :#FAA931;
+	padding:1%;
+	border-radius: 7px 7px 0 0; 
+}
+
+
+/**************H2**************/
+h2
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	position: relative;
+	text-align: center;
+	background-color :#73FA31;
+	padding:1% 2% 1% 2%;
+	border-radius: 0px 7px 0 0; 
+	border-left: 6px solid black;
+}
+
+@media screen and (min-width:611px)
+{
+	h2.intro{ width: 170px; }
+	h2.fonct{ width: 210px; }
+	h2.algo { width: 436px; }
+	h2#codes{ width: 310px; }
+} 
+
+
+/***Adaptation à l'écran****/
+
+
+@media screen and (max-width: 680px)
+{
+	h2      { text-align: center; }
+	figure  { display: none;      }
+}
+
+/************* H3 *****************/
+h3
+{
+	text-align: center;
+	background-color :#0ECED5;
+	padding:1% 2% 1% 2%;
+	border-radius: 0px 7px 0 0; 
+	border-left: 6px solid #570605;
+	margin-left: -5.8%;
+}
+
+@media screen and (min-width:501px)
+{
+
+	h3#etat{ width: 260px; }
+	h3#ordo{ width: 400px; }
+	h3#tree{ width: 300px; }
+} 
+
+
+/******* Les blocs contenant les titres H1...*/
+div.bloc-h2
+{
+	color:#000000;
+	border:2px double #73FA31;
+	background-color: #D3FF9D;
+	padding: 2% 5% 2% 5%;
+	overflow: auto;
+}
+
+.bloc-h2 li
+{
+	padding: 3px;
+	font-size: 95%;
+	font-family: initial;
+}
+li ul, li ol {font-size: inherit;}
+
+h2{ margin-bottom: -2px; }
+
+/***Les paragraphes****/
+.nouv-par{ margin-left:9%; }
+
+
+/*******footer*********/
+footer
+{
+	background-color: #CBB224;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	border-radius: 10px 10px 10px 10px;
+}
+
+#Grand_Bloc
+{
+	margin-left: 13%;
+	display: inline-flex;
+	width: 70%;
+}
+
+.blc1{ width: 100%; }
+
+p#email
+{
+	clear: left;
+	margin-top: 10px;
+}
+
+.blc2
+{
+	margin-left: 15%;
+	width: 90%;
+}
+
+#logo_fcbk
+{
+	margin-left: 50px;
+	position: relative;
+	margin-top: -10px;
+	float: left;
+}
+
+#p1{ margin-left: 70px; }
+
+/********LES TABLEAUX*****************/
+
+#interne
+{
+	margin: auto;
+	margin-top: 20px;
+}
+table {border-collapse: collapse;}
+table td, table th
+{
+	border:1px solid #000;
+	border-collapse: collapse;
+}
+td 
+{
+	padding: 8px;
+	text-align: left;
+}
+
+table#interne th, table#interne td,th {text-align: center;} 
+table#interne th {background-color: #145;color: #fff;}
+
+table th#mid
+{
+	background-color: transparent;/* #D3FF9D;*/
+	border: 1px solid transparent;
+	border-bottom: 1px solid #000;
+	border-right:  1px solid #000;
+}
+table tr:nth-child(odd){background: #eef;}
+table tr:nth-child(even){background: #bbf;}
+
+table, table {border-radius: 5px;}
+
+/****************DIVERS**********************/
+#zero{margin-left: 22px;}
+#zero+ol {margin-top: 1px;}
+.red{color: red;}
+.noir{color: #000;}
+.bleu{color: #00f;}
+.vert{color: #0f0;}
+.jaune{color: #ff0;}
+.blanc{color: #fff;}
+
+.gras{font-weight: bold;}
+.important{	font-size: 112%;}
+.italic,q {font-style: italic;}
+.col{margin-left:11%;}
+.fond-gr
+{
+	background-color: #bdf;
+	padding: 1px 6px;
+	border: 1px solid #999;
+	border-radius: 6px;
+}
+.fond-int
+{
+	background-color: #fda;
+	padding: 1px 6px;
+	border: 1px solid #999;
+	border-radius: 6px;
+}
+.fond-code
+{
+	background-color: #222;
+	padding: 1px 6px;
+	border: 1px solid #999;
+	border-radius: 6px;
+	font-size: 90%;
+	color: #ccc;
+}
+div.fond-gr{width: 200px;box-shadow: 0.5px -2px 7px #000;}
+.resultat-comand
+{
+	color: #0f0;
+	background-color: #00f;
+	font-size: 100%;
+}
+
+.normale
+{
+	color: white;
+	background-color: #222;
+	width: 80%;
+	margin-left: 5%;
+}
+.code
+{
+	width: 80%;
+	margin:auto;
+}
+pre.ligne
+{
+	width: 400px;
+}
+h2.pre-req{	background-color :#5F00C0; }
+div.pre-req
+{
+	border:2px double #5F00C0;
+	background-color: #FFCFEF;
+	color: #000;
+}
+
+
+p+ul#caracteristique:hover
+{
+	border-left: 2px double #662;
+}
+
+.img-list
+{
+	list-style-image: url(../img/flecheblanchedroite.png);
+}
+.img-list li:hover
+{
+	list-style-image: url(../img/bulle.png);
+	
+}
+.img-list:hover{border-left: none;}
+
+p+ul:hover, p+ol:hover
+{
+	border-left: 2px double #662;
+	margin-left: -2px;
+}
+
+li>ul:hover, li>ol:hover
+{
+	border-left: 2px double #266;
+	margin-left: -2px;
+}
+
+main
+{	
+	-webkit-filter: contrast(109%);
+	-moz-filter: contrast(109%);
+	-o-filter: contrast(109%);
+	-ms-filter: contrast(109%);
+	filter: contrast(109%);
+}

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Documentation</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 500px)" href="style/menu-mobile-phone.css">
+		<link rel="stylesheet" type="text/css" media="not screen and (max-device-width: 500px)" href="style/menu.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link rel="stylesheet" type="text/css" href="style/dark-style.css">
+		<link href="prism/prism.css" rel="stylesheet" />
+	<!--	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+	<!--Faouzi Mohamed-->
+	</head>
+	<body>
+
+		<header>
+			<nav id="main-nav">
+				<p>
+					<a href="docm.html" onclick="jascript:f()">Documentation
+						<img src="img/menu.png" height="50" id="img1" >
+						<img src="img/doc.png" height="50" >
+					</a>
+				</p>
+				<ul id="main-menu">
+					<li style="clear:both;"><a href="index.html"><img src="img/home.png" height="50" > Acceuil</a></li>
+					<li style="clear:both;"><a href="#"><img src="img/ord.png" height="50" > Ordonnancement</a></li>
+					<li style="clear:both;"><a href="#" id="telec"><img src="img/downl.png" height="50" >Téléchargement</a></li>
+				</ul>
+			</nav>
+		</header>
+		<script type="text/javascript" src="scripts/menu-click.js"></script>
+
+		<main>
+			<h1>La documentation</h1>
+
+			<!--Bloc du pré-requis-->
+			<h2 class="main-h2 pre-req">Pré-requis</h2>
+			<div class="bloc-h2 pre-req">
+				<p>Pour pouvoir comprendre la suite du documentation, des pre-réquis sont indispensable pour venir au bout.<br>
+				C'est pourquoi il faut :</p>
+				<ul>
+					<li>Le projet étant fais en <strong>langage C</strong> il faut, c'est l'un des première chose a en maitriser, les structures de données et principes suivantes : 
+						<ul>
+							<li>Connaître la programmation modulaire.</li>
+							<li>Les Tableaux.</li>
+							<li>Le principe d'allocation dynamique de la mémoire et de la réallocation.</li>
+							<li>Les listes chainés (Et le principes de files).</li>
+							<li>Les fichiers.</li>
+						</ul>
+					</li>
+					<li>Le principe des algorithmes d'ordonnancements <strong>FIFO</strong> et <strong>TOURNIQUET</strong></li>
+					<li>Fonctionnement du diagramme de GANT.</li>
+				</ul>
+			</div>
+			<!--Fin Bloc du pré-requis-->
+			
+
+			<!--Début du bloc du sommaire-->
+			<h2 class="main-h2">Plan du documentation</h2>
+			<div class="bloc-h2">
+				<p>En voici le plan de l'explication des fonctions et fonctionnalités utilisées :</p>
+
+				<ol type="I" >
+					<li>Les structures de données du programme</li>
+					<li>Les codes de couleurs
+						<ol type="i">
+							<li>Les séquences d'échappement <span class="gras">AINSI</span></li>
+							<li>La fonction de couleur (<span class="italic"> Fonctionne uniquement sur Windows</span>).</li>
+						</ol>
+					</li>
+					<li>Fonction d'ordonnancement.</li>
+					<li>Fonction du diagramme de Gant.</li>
+					<li>Fonction du schéma temporel.</li>
+					<li>Fontion d'affichage en résumé.</li>
+				</ol>
+
+			</div>
+			<!--Fin du bloc du sommaire-->
+			
+			<!--Bloc du structure des données-->
+			<h2>I- Les structures de données du programme</h2>
+			<div class="bloc-h2">
+				<p><span class="nouv-par"></span> Pour bien et mieux gerer les données du programme ainsi que rendre le code du projet lisible,j'ai trouvé utile d'utilis&eacute; des structures et des types énumerées. Ces types ont grandement simplifiés d'énormes tâches et on réduit plusieurs ligne de codes en quelques instructions simple.</p>
+				<p>En voici donc ces types de données :</p><br>
+				<table>
+					<tr>
+						<tr><th>Définition d'un processus</th></tr>
+
+						<td>
+							Pour un Processus nommé <span class="fond-gr">BCP</span>:<br>
+<div class="code">
+<pre class="line-numbers"><code class="language-C">typedef struct BCP BCP;
+struct BCP
+{
+	int       ID;
+	int       DA;
+	int   TEX[2];
+	int   TES[2];
+	int     nbEX;
+	int     nbES;
+	int     eluC; 
+	int      esC; 
+	long  fin_es;
+};
+</code></pre>
+</div>
+						<p>Explication de chaque champ du structure :</p>
+						<ul>
+							<li>
+								<span class="fond-gr"> ID</span> : Représente l'identificateur du processus. Un ID est unique 
+								et est généré automatiquement par le programme.
+							</li>
+							<li>
+								<span class="fond-gr">DA</span> : Représente la date d'arrivée d'un processus. Contrairement 
+								à l'ID, la date d'arrivée n'est pas unique à un processus, ce qui fait que plusieurs processus 
+								peuvent avoir la même date d'arrivée.
+							</li>
+							<li>
+								<span class="fond-gr">TEX[<span class="red">2</span>]</span> 
+								(resp. <span class="fond-gr">TES[<span class="red">2</span>]</span>) : 
+								Réprésente un tableau qui va contenir les temps d'éxecution (resp. les temps 
+								d'entrée/sortie) du processus. Et un processus ne peut avoir qu'au maximum deux temps d'éxecution (resp. temps d'entrée/sorties).
+							</li>
+							<li>
+								<span class="fond-gr">nbEX</span> 
+								(resp. <span class="fond-gr">nbES</span>) : 
+								Représente le nombre de temps d'éxecution (resp. temps d'entrée/sorties) 
+								que possède le processus. Et au maximum ce nombre sera égale à 2.
+							</li>
+							<li>
+								<span class="fond-gr">eluC</span> 
+								(resp. <span class="fond-gr">esC</span>) : 
+								Répresente un compteur qui fait le parcour sur le tableau de temps d'éxecution 
+								(reps. temps d'entrée/sortie) du processus. Se sont ces champs qui vont indiquer 
+								au programme le temps qu'il faut utiliser sur le tableau de chacun des deux tableaux.
+							</li>
+							<li>
+								<span class="fond-gr"> fin_es</span> : 
+								Ce champ est utilisé dans la fonction d'ordonnancement pour vérifier si un processus a 
+								consomé tout ses temps : Temps d'exécution et temps d'entrés sorties. Pour cela il aura 
+								deux types de valeurs possibles, 
+								<span class="fond-int"> un nombre supérieur ou égale à zéro</span> 
+								s'il n'a pas encore terminé ou bien <span class="fond-int red">-1</span> sinon.
+							</li>
+						</ul>
+						</td>
+					</tr>
+				</table>
+
+				<br>
+				<table>
+					<tr>
+						<tr>
+							<th>Définition de l'enregistrement qui contiendra la liste des processus lus par le programme</th>
+						</tr>
+						<td>
+							Les processus lu par le programme seront stockés dans un tableau dont j'ai jugé judicieux de prendre toutes les informations du tableau et le tableau lui même les mettre sur un structure. Ce qui va réduire le passage des paramètres sur les fonctions.
+							<div class="code"><pre class="line-numbers"><code class="language-C">typedef struct ListeP ListeP;
+/* Liste contenant tous les processus*/
+struct ListeP
+{
+	int nbMAX; 
+	int nbproc;
+	BCP *T;
+	FILE *f; 
+};
+</code></pre></div>			<p>Explication de chaque champ du structure :</p>
+							<ul>
+								<li>
+									<span class="fond-gr">nbMAX</span> : 
+									Répresente la taille maximal courant du tableau. En effet, on pourrait saisir des 
+									processus pour un certain taille maximum, puis en supprimer quelques-un. Ainsi la 
+									taille maximal restera la même mais le nombre de processus restant dans la liste 
+									va diminuer.
+								</li>
+								<li>
+									<span class="fond-gr">nbproc</span> : 
+									Répresente le nombre de processus courant qui est dans la liste. La valeur de ce 
+									champ sera toujours 
+									<span class="fond-int">inférieure ou égale</span> 
+									la valeur de nbMAX.
+								</li>
+								<li>
+									<span class="fond-gr"><span class="red">*</span>T</span> : 
+									Répresente un pointeur qu'on va utiliser pour faire une allocation dynamique de 
+									taille nbMax. Et c'est ainsi que cepointeur sera le tableau(la liste) des processus 
+									(<span class="fond-int">BCP</span>).
+								</li>
+								<li>
+									<span class="fond-gr"><span class="red">*</span>f</span> : 
+									Répresente un pointeur sur un fichier de sauvegarde des processus lus par le programmes. 
+									Au début du programme sa valeur sera le pointeur 
+									<span class="fond-gr red" style="background-color: #222;">NULL</span> 
+									puis au cours de la première lecture d'un processus, le programme assignera une valeur 
+									(Un pointeur sur un <span class="fond-int"> fichier qu'il créera automatiquement</span>).
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				<br>
+
+				<table>
+					<tr>
+						<tr>
+							<th>
+								Définition du structure d'un maillon du liste qui contiendra le résultat de l'ordonnancement
+							</th>
+						</tr>
+						<td>
+							En effet, lors de l'ordonnancement des processus, on met les informations de chaque processus 
+							dans une liste que l'on utilisera après dans le programme. Ces même informations seront 
+							utilisés dans la fonction d'ordonnancement et dans 
+							<a href="#" class="fond-int" title="C'est une fonction qui est expliqué plus bas dans cette documentation, appuyez pour y acceder">la diagramme de GANT</a>. 
+							Les informations qui seront enregistrées représentent la structure suivante qui est une 
+							<span class="fond-int">liste chainée</span> :
+<div class="code">
+	<pre class=" line-numbers"><code class="language-C">typedef struct Info_BCP Info_BCP;
+/***** Etat d'un BCP a un instant x compris entre [deb,fin], 
+*(stocké sous forme de liste chainé) **/
+struct Info_BCP
+{
+	Etat  E;
+	int deb;
+	int fin;
+	BCP p;
+	Info_BCP *suivant;
+};</code></pre>
+</div>
+							<p>Explication de chaque champ du structure :</p>
+							<ul>
+								<li>
+									<span class="fond-gr">E</span> : Réprésente l'Etat d'un processus sur un intervalle 
+									calculé  
+									<span class="fond-int">
+										[<span class="bleu">deb</span>,<span class="bleu">fin</span>]
+									</span>.<br>
+									Le type <span class="fond-int bleu">Etat</span> est un 
+									<span class="fond-int red">Type énuméré</span> dont la déclaration est la suivante :
+									<br>
+									<code class="line-numbers language-C" style="display: inline-block;">
+										typedef enum Etat{ termine, bloque, es, pret, elu }Etat;
+									</code>
+								</li>
+								<li><span class="fond-gr">deb et fin</span> : Répresentent 
+									<span title="D'abord deb puis fin"> repectivement</span> 
+									le début et la fin d'un etat <q>E</q> d'un processus <q>p</q>.</li>
+								<li><span class="fond-gr">p</span> : Répresente le processus dont on sauvegarde les information.</li>
+								<li><span class="fond-gr"><span class="red">*</span>suivant</span> : Répresente un pointeur un
+								 pointeur* vers un autre maillon de la liste qu'on se permete d'appeler le suivant sur la liste. </li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				<br>
+
+				<table>
+					<tr>
+						<tr>
+							<th>Définition du structure de contrôle d'un liste chainé d'<span class="red">Info_BCP</span></th>
+						</tr>
+						<td>
+							Lorsque nous voulons ajouter un nouveau maillon dans la liste chainée dont l'ajout est fait 
+							à la fin de la liste, on doit parcour ce dernier jusqu'à trouver la fin puis ajouter le nouveau maillon.<br>
+							La structure suivante permet de pointer vers le début et la fin du liste, ce qui permet de passer d'une 
+							<span class="fond-int">complexité temprelle de l'odre de n</span> vers une 
+							<span class="fond-int">complexité temprelle de l'odre de 1</span>.
+
+<div class="code">
+<pre><code class="line-numbers language-C">typedef struct _ListeTrnq _ListeTrnq;
+struct _ListeTrnq
+{
+	unsigned long Q; 
+	unsigned nbElmnt; 
+	Info_BCP *Tete;
+	Info_BCP *Queue;
+}
+</code></pre>
+</div>
+						<p>Explication de chaque champ du structure :</p>
+						<ul>
+							<li>
+								<span class="fond-gr">Q</span> : Réprésente le 
+								<span class="fond-int">Quantum</span> 
+								qui sera appliqué lors de l'ordonnacement des processus.
+								<ul>
+									<li>
+										Pour l'ordonnancement avec l'algorithme du FIFO, la valeur du quantum est une 
+										constante très grande dont sa valeur est 
+										<span class="fond-gr red">999 999 999</span>. <br>
+										En effet, cette constante est déclarée dans le fichier 
+										<span class="fond-gr bleu"> ord/ordonne.h</span> avec la syntaxe suivante : 
+										<code class="line-numbers language-C">#define __FIFO 999999999</code><br>
+										Ainsi avec une si grande valeur, il ne sera pas courant de trouver un processus 
+										dont son temps de rotation lui sera supérieur.
+									</li>
+									<li>Pour l'ordonnancement selon le principe du Tourniquet le quantum sera saisie 
+									par l'utilisateur.</li>
+								</ul>
+							 </li>
+							 <li>
+							 	<span class="fond-gr">nbElmnt</span> : Réprésente le nombre d'élément qui se trouve dans la liste. Si la liste est vide sa valeur sera égale à zéro.
+							 </li>
+							 <li>
+							 	<span class="fond-gr"><span class="red">*</span>Tete</span> (
+						 		resp. <span class="fond-gr"><span class="red">*</span>Queue</span>) : 
+						 		Représente un pointeur sur le premier élément du liste (resp. sur le dernier 
+						 		élément du liste).
+							 </li>
+						</ul>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--Bloc du structure des données-->
+
+			<!--Bloc du code des couleurs-->
+			<h2>II-Les codes de couleurs</h2>
+			<div class="bloc-h2">
+				<h3>i- Les séquences d'échappement AINSI</h3>
+				<p>
+					<span class="nouv-par"></span> Les séquences d'échappement ANSI permettent de contrôler la couleur 
+					et le formatage du texte dans un terminal informatique. Elles consistent en une séquence de 
+					caractères commençant par le caractère d'échappement, le caractère 27.  Le caractère suivant est souvent 
+					(mais pas toujours) un crochet ouvert: 
+					<span class="gras">[</span>. La norme ANSI définit 8 couleurs, plus un mode lumineux(background), 
+					donnant un total de 16 possibilités. La séquence est la suivante:
+				</p> <br>
+				<span class="fond-code" style="font-size: 100%;">
+					<span class="gras">\e[</span>
+					<span class="red">&lt;nombre&gt;</span>
+					<span class="gras">m</span>
+				</span>
+
+				<p>Où <span class=" italic noir fond-code">&lt;nombre&gt;</span> fait partie de:</p>
+				<p>Premier plan (<span class="italic">foreground</span>) :</p>
+				<div class="fond-gr">
+					<ul>
+						<li>30 noir</li>
+						<li>31 rouge</li>
+						<li>32 vert</li>
+						<li>33 jaune</li>
+						<li>34 bleu</li>
+						<li>35 magenta</li>
+						<li>36 cyan</li>
+						<li>37 Blanc</li>
+					</ul>
+				</div>
+
+				<p>Arrière plan (<span class="italic">Background</span>) :</p>
+				<div class="fond-gr">
+					<ul>
+						<li>40 noir</li>
+						<li>41 rouge</li>
+						<li>42 vert</li>
+						<li>43 jaune</li>
+						<li>44 bleu</li>
+						<li>45 magenta</li>
+						<li>46 cyan</li>
+						<li>47 Blanc</li>
+					</ul>
+				</div>
+
+				<p>Pour la mise en forme du texte:</p>
+				<div class="fond-gr">
+					<ul>
+						<li>0 Réinitialiser tout</li>
+						<li>1 Gras</li>
+						<li>2 Pale</li>
+						<li>3 Italique</li>
+						<li>4 Soulignement</li>
+						<li>...</li>
+					</ul>
+				</div>
+
+				<span class="important nouv-par"> <span class="red">Remarque</span> : Les couleurs peuvent varier suivant les reglages du terminal utilisés.</span><br><br>
+				<div class="code"><pre class="line-numbers"><code class="language-C">printf("\e[32m\e[44m Mon texte verte en Fond noir\e[0m Texte Normale");</code></pre></div>
+
+				<p>Ce qui donne :</p>
+				<p span class="normale">C:\Users\Faouzi><span class="resultat-comand"> Mon texte verte en Fond bleu</span> Texte Normale</p>
+				<br>
+				<p>Pour mettre le texte en gras on ajoute <span class="fond-gr"><span class="bleu">\e[1m</span></span> </p>
+
+<div class="code">
+<pre class="line-numbers"><code class="language-C">
+printf("\e[32m\e[42mMon texte verte en Fond bleu\e[0m");
+printf("\e[32m\e[42m\e[1mMon texte verte en Fond bleu et qui est gras\e[0m");
+</code></pre>
+</div>
+
+				<p>Ce qui donne :</p>
+				<p span class="normale">C:\Users\Faouzi>
+					<span class="resultat-comand"> Mon texte verte en Fond bleu</span> 
+					Texte Normale
+				</p>
+				<p span class="normale">C:\Users\Faouzi>
+					<span class="resultat-comand" style="font-weight: bold;"> 
+						Mon texte verte en Fond bleu et qui est gras
+					</span> Texte Normale
+				</p>
+				<br>
+				<h3>ii- La fonction de couleur (qui fonctionne uniquement sur windows)</h3>
+				<p>
+					C'est une petite fonction qui requiert le bibliothèque 
+					<span class="fond-gr">&lt;<span class="bleu">windows.h</span>&gt;</span>
+				</p>
+
+<div class="code">
+	<pre class="line-numbers"><code class="language-C">#include &lt;windows.h&gt;
+void Color(int couleurDuTexte,int couleurDeFond)
+{
+	HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+}
+</code></pre>
+</div>
+
+				<p>Et ensuite pour utiliser les couleurs il suffit d'appeler <pre class="line-numbers ligne"><code class="language-C">Color(1er_nombre,2em_nombre);</code></pre> à l'endroit où l'on veut mettre les couleurs. Avec :</p>
+				<ul>
+					<li><span class="fond-int"> 1er_nombre </span>: couleur texte.</li>
+					<li><span class="fond-int"> 2em_nombre </span>: couleur fond</li>
+				</ul>
+
+				<p>Et voici la légende de couleurs :</p>
+				
+				<div class="fond-gr" style="padding-top: 15px;">
+				<span id="zero">0. Noir</span>
+					<ol>
+						<li>Bleu foncé</li>
+						<li>Vert</li>
+						<li>Bleu-gris</li>
+						<li>Marron</li>
+						<li>Pourpre</li>
+						<li>Kaki</li>
+						<li>Gris clair</li>
+						<li>Gris</li>
+						<li>Bleu</li>
+						<li>Vert fluo</li>
+						<li>Turquoise</li>
+						<li>Rouge</li>
+						<li>Rose fluo</li>
+						<li>Jaune fluo</li>
+						<li>Blanc</li>
+					</ol>
+				</div>
+			</div>
+			<!--Fin du Bloc du code des couleurs-->
+
+			<h2>III-Fonction d'ordonnancement</h2>
+			<div class="bloc-h2">
+				<p>
+					<span class="nouv-par"></span> L'ordonnancement des processus est géree par une seule fonction contenant 
+					les deux types d'algorithmes qui devront être implémentés. Le but de la fonction est de prendre chaque 
+					processus et le mettre dans la liste qui contiendra le résultats de l'ordonnancement en synchronisant 
+					l'horloge du microprocesseurs et celle du périphérique d'entrée/Sortie.
+				</p>
+				<p> 
+					<span style="padding: 2px 7px; color: red;border-radius: 9px; background-color: #acb">!</span>
+					 Pour que la fonction fasse bien son travail, celle-ci fait appel à d'autres fonctions dont leur but sera expliquée au fur 
+					 et à mésure de la lecture.
+				</p>
+				<p>
+					Prototype de la fonction : <br>
+					<code class="language-C" style="padding: 2px 10px;"> long* Ord_Tourniquet(_ListeTrnq *Tr, ListeP liste, char *typeAlgo);</code>
+				</p>
+
+				<p>La fonction prend en paramètre :</p>
+				<ol>
+					<li>
+						<span class="fond-int"><span style="color: #d00">*</span>Tr</span> :
+						  L'adresse d'un enregistrement qui contient une liste vide, une liste qui contiendra le résultat
+						   de l'ordonnancement.
+					</li>
+					<li><span class="fond-int">liste</span> :
+						La liste contenant les processus, c'est un enregistrement qui contient un tableau de processus et les informations du tableau.
+					</li>
+					<li>
+						<span class="fond-int"><span style="color: #d00">*</span>typeAlgo</span> :
+						Une chaine de carractère. Vu que la fonction gère les deux algorithmes 
+						le <span class="fond-gr">FIFO</span> et <span class="fond-gr">TOURNIQUET</span> 
+						la chaine qui sera sur ce pointeur permettra à la fonction de savoir s'il doit faire le FIFO ou bien le TOURNIQUET.
+					</li>
+				</ol>
+
+				<ul class="img-list">
+					<li>
+						Si l'utilisateur a choisi l'algorithme FIFO, le quantum sera
+						la valeur du champ <code class="language-C" style="padding: 2px 10px;">Tr->Q</code>. 
+						Cette valeur est la constante 
+						<span class="fond-code" style="color: yellow;">__FIFO
+						</span>.
+					</li>
+					<li>
+						Si l'utilisateur a choisi l'algorithme TOURNIQUET la fonction lui demandera de saisir le quantum. Et ce quantum devra être un nombre strictement positif. Enfin la valeur saisie sera stockée sur  
+						<code class="language-C" style="padding: 2px 10px;">Tr->Q</code>. 
+					</li>
+				</ul>
+
+				<p>
+					Dans certains partie du programme on aura besoin de cette fonction pour prendre le temps de rotation 
+					de chaque processus. On en verra alors un pointeur 
+					<code class="language-C" style="padding: 2px 10px;">NULL</code> en premier paramètre et la valeur de  
+					<span class="fond-code">Tr</span> sera donc 
+					<code class="language-C" style="padding: 2px 10px;">NULL</code>.
+				</p>
+				<p>
+					Le bout de code suivant relate ces explications :
+<div class="code" style="width: 100%">
+<pre><code class="line-numbers language-C">if(Tr == NULL) 
+{
+	Tr = calloc(1,sizeof(_ListeTrnq));
+	Tr->Q = __FIFO;Tr->nbElmnt = 0;Tr->Tete = NULL;
+}
+
+/*Demande de saisie du Quantum*/
+if(strcmp(typeAlgo,"TOURNIQUET") == 0)
+{
+	do{
+		printf("\n\n Veuillez saisir le Quantum >0: ");
+		scanf("%ld",&Tr->Q);
+
+		if(Tr->Q <= 0) printf(" \t%sLe quantum doit etre un nombre entier positif%s\n",rouge,init);
+	}while(Tr->Q <= 0);
+}
+</code></pre>
+</div>
+				</p><br>
+
+				<p>
+					Dans l'ordonnancement des processus, la  fonction aura besoins de plusieurs informations sur 
+					chacun des processus. Ces informations vont en quelque sorte servir à diminuer les incohérences 
+					sur la résultat de l'ordonnancement, surtout sur la synchronisation de l'horloge du périphérique
+					d'entrée/sortie (E/S) et celle du microprocesseur (CPU). Sans doute vous l'aurez compris les champs 
+					<code class="language-C" style="padding: 2px 8px;">TES[2]</code> et le champ
+					<code class="language-C" style="padding: 2px 8px;">TEX[2]</code>
+					qui se trouvent dans la structure 
+					<span class="fond-code"><span class="jaune">BCP</span></span> 
+					vont servir pour l'utilisation respective du périphérique d'E/S et du CPU.<br>
+					Les deux horloges seront synchronisées suivant cette utilisation.
+				</p><br>
+
+				<p>J'ai nommé :</p>
+				<ul>
+					<li>
+						<span class="fond-code"><span class="blanc">_FIN_DERNIER_ES</span></span> : 
+						La variable qui répresente l'horloge du périphérique d'ES initialié à zéro.
+					</li>
+					<li>
+						<span class="fond-code"><span class="blanc">_TIMER</span></span> : 
+						La variable qui répresente l'horloge du CPU initialisé à la date d'arrivé du processus en tête 
+						de la liste des processus.<br> 
+						<code class="language-C" style="padding: 2px 10px;">long _TIMER = liste.T[0].DA;</code>
+						<span class="italic" style="color: #222">Avant l'appel de la fonction d'ordonnancement, le tableau contenant les processus sera trié par odre croissant des dates d'arrivée</span>.
+
+					</li>
+				</ul>
+
+				<p>Ces deux variables sont de type <code class="language-C" style="padding: 4px 10px;">long</code>.</p>
+				<p>Caractéristique de l'ordonnancement :</p>
+				<ul id="caracteristique">
+					<li>
+						La séléction des processus sur le tableau de BCP pour l'ordonnancement est quasi-linéaire : 
+						Ce qui veur dire que pour séléctionner le processus N°i+1, il faut d'abord passer aux processus de N°&lt;i+1. Sauf dans certains conditions qui permettrons de sauter certains processus.
+					</li>
+					<li>
+						Les processus dont leur date d'arrivée (DA) est supérieur à l'horloge 
+						<code class="language-C" style="padding: 2px 8px">_TIMER</code> seront ignorés jusqu'à ce que 
+						<code class="fond-code" style="padding: 2px 4px;font-size:100%">
+							_TIMER <span style="color: #7ff">&ge;</span> 
+							processus<span style="color: #7ff">-></span>DA
+						</code>
+					</li>
+					<li>
+						Un processus ne peut pas être dans deux etats à la fois (dans un même intervalle d'horloge/de temps).
+						 Pour vérifier que dans un certains intervalle le processus est <q title="Par abus de langage pour dire qu'un processus n'est sur aucun etat">libre</q>, la fonction fera appel à la fonction 
+						<code class="language-C" style="padding: 2px 8px">Etat etatProc(_ListeTrnq *Tr, BCP p, long time);</code>
+						 dont la valeur de retour est l'etat du processus sur l'intervalle contenant le temps d'horloge 
+						<code class="language-C" style="padding: 2px 8px">time</code>.<br><br>
+						Cette fonction prend en paramètre :
+						<ul>
+							<li>
+								L'adresse de l'enregistrement 
+								<code class="language-C" style="padding: 2px 8px">*Tr</code>;
+							</li>
+							<li>
+								Le processus <code class="language-C" style="padding: 2px 8px">p</code> 
+								à vérifier;
+							</li>
+							<li>
+								et le temps d'horloge 
+								<code class="language-C" style="padding: 2px 8px">time</code> qui sera en l'occurence
+								<code class="language-C" style="padding: 2px 8px">_TIMER</code> ou 
+								<code class="language-C" style="padding: 2px 8px">processus->fin_es-1</code>;
+							</li>
+						</ul>							
+					</li>
+					<li>
+						Un processus ne possédant pas de temps d'exécution ne pourra avoir que deux etats possible 
+						<ol>
+							<li>Bloqué</li>
+							<li>E/S</li>
+						</ol>
+					</li>
+					<li>
+						Un processus ne possédant pas de temps d'E/S ne pourra avoir que deux etats possible
+						<ol>
+							<li>Prêt</li>
+							<li>Élu</li>
+						</ol> 
+					</li>
+					<li>
+						Un processus possédant <q title="Il peut en avoir au maximum 2">au moins</q> un temps 
+						d'exécution pourra effectuer les E/S ou être Bloqué uniquement s'il termine une utilisation du cpu 
+						autrement dit, s'il consomme un temps d'exécution. 
+					</li>
+					<li>
+						Un processus est consideré qu'il est à l'etat <span class="fond-int">terminé</span> s'il a 
+						consommé tous ses temps d'exécutions et d'E/S. Alors, il sera ignoré dans toute 
+						l'ordonnancement restante. Alors un certains variable nommé 
+						<code class="language-C" style="padding: 2px 8px">int _FINI_EXECUTION_</code>, initialement mis 
+						à zéro, sera incrémenté. 
+					</li>
+					<li>
+						L'ordonnancement prend fin si tous les processus sont à l'etat terminé, ce qui veut dire que 
+						<code class="language-C" style="padding: 2px 8px">_FINI_EXECUTION_ = liste.nbproc</code> 
+						.
+					</li>
+					<li>
+						La sauvegarde d'un etat d'un processus sur intervalle d'horloge 
+						<span class="fond-gr">[deb,fin]</span> se fait en appelant la fonction  
+						 <code class="language-C" style="padding: 2px 10px;display: inline-block;">
+						 	void listeRepartie(_ListeTrnq *Tr, BCP p, long deb, long fin, Etat e);
+						 </code><br>
+						 Avec les paramètres :
+						 <ol>
+							<li>
+								L'adresse de l'enregistrement 
+								<code class="language-C" style="padding: 2px 8px">*Tr</code>;
+							</li>
+							<li>
+								Le processus <code class="language-C" style="padding: 2px 8px">p</code> 
+								que l'on sauvegarde les informations;
+							</li>
+							<li>
+								<code class="language-C" style="padding: 2px 8px">deb</code> : La borne supérieure de l'intervalle;
+							</li>
+							<li>
+								<code class="language-C" style="padding: 2px 8px">fin</code> : La borne inférieure de l'intervalle;
+							</li>
+							<li>
+								<code class="language-C" style="padding: 2px 8px">e</code> : L'etat que possède le processus entre <span class="fond-int">[deb,fin]</span>
+							</li>
+						 </ol>
+						 Tous ces informations vont être enregistrées sur une liste chainée qui se trouve dans la structure
+						 <span class="fond-code">Tr</span>
+					</li>
+					<li>
+						Pour effectuer les E/S, la fonction ferra appel à la fonction que l'on expliquera son fonctionnement quand l'on reviendra pour son tour :<br>
+						<code class="language-C" style="padding: 2px 10px;display: inline-block;">
+							long effectuer_Les_ES(BCP *p, _ListeTrnq *Tr, ListeP liste, long _FIN_DERNIER_ES, long _TIMER, int indice,long rotate[]);
+						</code>
+					</li>
+					<li>
+						La fonction contient deux grandes parties qui gèrent l'ordonnancement :
+						<ol>
+							<li>
+								Première partie : C'est celle où le quantum <code class="language-C" style="padding: 2px 8px">Tr->Q</code> est supérieur ou égal au temps d'exécution du processus courant. C'est en gros dans cette partie où se fais le FIFO et les E/S et la mise des BCP à l'etat bloqué.<br>
+								Les conditions pour être dans cette partie sont :
+								<ul class="img-list">
+									<li>
+										Soit le processus n'a pas terminé tout son exécution et que 
+										<code class="language-C" style="padding: 2px 8px"> processus->TEX[i] <= Tr->Q</code><br>
+										Ici 
+										<code class="fond-gr">
+											processus =<span style="color: blue">&</span>liste<span style="color: green">.</span>T[<span style="color: red">j</span>];</code>, 
+										<code class="fond-gr">i <span style="color: #00f">=</span> 
+											processus<span style="color: #00f">-></span>eluC;</code> 
+
+											et <span style="color: red">j</span> appartient sur l'intervalle 
+										<code class="fond-int">[<span class="red">0</span>,
+											liste<span style="color: green">.</span>nbproc]</code> 
+										qui veut dire processus N°<span style="color: red">j</span>.
+									</li>
+									<li>
+										Soit le processus n'a pas de temps d'exécution et qu'il possède un temps d'E/S :<br>
+										<code class="language-C" style="padding: 2px 8px">
+											processus->nbEX == 0 && m < processus->nbES
+										</code><br>
+										Avec <code class="fond-gr">m <span style="color: #00f">=</span> 
+											processus<span style="color: #00f">-></span>esC;</code> 
+									</li>
+								</ul>  
+							</li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+
+		</main>
+
+		<footer>
+
+			<div id="Grand_Bloc">
+				<!--Premier colonne-->
+				<div class="blc1">
+					<p>
+						<a href="https://www.facebook.com/mohamed.faouzi.334" target="_blank" id="facebook">
+							<p  id="logo_fcbk">
+								<img src="img/facebook_logo.png" height="50" title="logo_Facebook" alt="facebook_logo.png">
+							</p>
+							<p>Faouzi Mohamed</p>
+							
+						</a>
+					</p>
+					<p id="email">
+						Email : <a href="mailto:faouzimohamedf@gmail.com">faouzimohamedf@gmail.com</a>
+					</p>
+					<p>Tel   : 0638463344</p>
+				</div>
+				<!--Fin du Premier colonne-->
+
+				<!--Deuxième colonne-->
+				<div class="blc2">
+					<p id="p1">Gestion de processus</p>
+					<p>Projet Système d'exploitation II - SMI - S4</p>
+					<p>
+						<a href="http://fs.uit.ac.ma/"> Faculté des sciences</a> 
+						- 
+						<a href="http://www.uit.ac.ma/fr/">  UNIVERSITÉ IBN TOFAIL</a>
+					</p>
+				</div>
+				<!--Fin du deuxième colonne-->
+			</div>
+			<!--Fin du grand bloc-->
+		</footer>
+
+		<!--Référence et source-->
+		<aside>
+			<!--Les icones-->
+			<div>
+				Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+			</div>
+			<!--Fin pour les icones-->
+		</aside>
+		<script src="prism/prism.js"></script>
+	</body>
+</html>
